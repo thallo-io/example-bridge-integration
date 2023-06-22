@@ -6,6 +6,9 @@ import { RetirementCompleteRequestDto } from "./types/RetirementCompleteRequestD
 import { UnbridgingCompleteRequestDto } from "./types/UnbridgingCompleteRequestDto"
 import { UnbridgingCompleteResponseDto } from "./types/UnbridgingCompleteResponseDto"
 
+// We require your public key in order to verify the JWT token
+// Alternatively you can use an API key in place of the JWT (JWT === API_KEY) in this case
+// PLease let us know which auth mechanism you wish to use
 const JWT = 'your-jwt-token'
 
 const axiosInstance = axios.create({
@@ -22,7 +25,7 @@ export async function creditsReceived(): Promise<AxiosResponse<CreditsReceivedRe
         external_id: 'xx98dy-4545-332f-954iut1',
     }
 
-    return await axiosInstance.post<CreditsReceivedResponseDto>('/{{Thallo registered cedits received webhook}}', requestBody)
+    return await axiosInstance.post<CreditsReceivedResponseDto>('/${THALLO_REGISTERED_CREDITS_RECEIVED_WEBHOOK}', requestBody)
 }
 
 export async function retirementComplete(): Promise<AxiosResponse<RetirementCompleteResponseDto>> {
@@ -37,7 +40,7 @@ export async function retirementComplete(): Promise<AxiosResponse<RetirementComp
         status: 'SUCCESS',
         reason: undefined,
     }]
-    return await axiosInstance.post<RetirementCompleteResponseDto>('/{{Thallo registered retirement webhook}}', requestBody)
+    return await axiosInstance.post<RetirementCompleteResponseDto>('/${THALLO_REGISTERED_RETIREMENT_WEBHOOK}', requestBody)
 }
 
 export async function unbridgingComplete(): Promise<AxiosResponse<UnbridgingCompleteResponseDto>> {
@@ -47,5 +50,5 @@ export async function unbridgingComplete(): Promise<AxiosResponse<UnbridgingComp
         status: 'SUCCESS',
         reason: undefined,
     }
-    return await axiosInstance.post<UnbridgingCompleteResponseDto>('/{{Thallo registered unbridging webhook}}', requestBody)
+    return await axiosInstance.post<UnbridgingCompleteResponseDto>('/${THALLO_REGISTERED_UNBRIDGING_WEBHOOK}', requestBody)
 }
