@@ -12,12 +12,12 @@ const app: Express = express()
 const port = 8080
 
 /**
- * get information about all credit blocks transferred
- * starting from and including `last_serial_number`
+ * if `serial_number` is undefined: get information about all credit blocks transferred
+ * if `serial_number` is valid: return information about that specific block
  */
-app.get('/credits/block/:last_serial_number', async (req: Request, res: Response) => {
+app.get('/credits/block/:serial_number', async (req: Request, res: Response) => {
     const response: CreditBlockDataDto[] = [{
-        serial_number: 'last_serial_number',
+        serial_number: 'serial_number',
         quantity: '500',
         project: {
             name: 'Hebrides Windfarm',
@@ -51,7 +51,7 @@ app.post('/credits/retire', async (req: Request, res: Response) => {
 
     const response: RetirementRequestResponseDto = {
         retirement_request_id: '00c7qpby5eqk470euc',
-        external_id: 'ju98dy-4345-366f-954ijjd'
+        external_id: '60b9c035-0173-47e9-bcc6-4bd2359d084b'
     }
     res.json(response)
 })
@@ -63,12 +63,12 @@ app.post('/credits/retire', async (req: Request, res: Response) => {
  * You can notify Thallo of the completed unbridging event via a webhook API call
  * For an example, please look at `unbridgingComplete` in [httpRequest](../requests/httpRequests.ts)
  */
-app.post('/credits/unbridge', async (req: Request, res: Response) => {
+app.post('/credits/transfer', async (req: Request, res: Response) => {
     const body: UnbridgingRequestDto = req.body
 
     const response: UnbridgingRequestResponseDto = {
         unbridging_request_id: '00c7qpby5eqk470euc',
-        external_id: 'hdsj99-5555-366f-ppodl9'
+        external_id: 'd9f588f9-28c9-479c-a538-6acdabff8bcf'
     }
     res.json(response)
 })

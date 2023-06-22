@@ -32,7 +32,7 @@ export async function retirementComplete(): Promise<AxiosResponse<RetirementComp
         amount_remaning: '50',
         remaining_serial: 'REMAINING-SERIAL',
         retired_serial: 'RETIRED_SERIAL',
-        external_id: 'ju98dy-4345-366f-954ijjd',
+        external_id: '60b9c035-0173-47e9-bcc6-4bd2359d084b', // this matches the value the registry returned from the `/credits/retire` API call
         retirement_request_id: '00c7qpby5eqk470euc',
         status: 'SUCCESS',
         reason: undefined,
@@ -42,7 +42,7 @@ export async function retirementComplete(): Promise<AxiosResponse<RetirementComp
 
 export async function unbridgingComplete(): Promise<AxiosResponse<UnbridgingCompleteResponseDto>> {
     const requestBody: UnbridgingCompleteRequestDto = {
-        external_id: 'ju98dy-4345-366f-954ijjd',
+        external_id: 'd9f588f9-28c9-479c-a538-6acdabff8bcf', // this matches the value the registry returned from the `/credits/transfer` API call
         unbridging_request_id: '00m7qpby3oop470axj',
         status: 'SUCCESS',
         reason: undefined,
