@@ -5,6 +5,8 @@ import { ProjectLocation } from './enums/ProjectLocation'
 import { SDG } from './enums/SDG'
 import { RetirementRequestDto } from './types/RetirementRequestDto'
 import { RetirementRequestResponseDto } from './types/RetirementRequestResponseDto '
+import { UnbridgingRequestDto } from './types/UnbridgingRequestDto'
+import { UnbridgingRequestResponseDto } from './types/UnbridgingRequestResponseDto '
 
 const app: Express = express()
 const port = 8080
@@ -50,6 +52,23 @@ app.post('/credits/retire', async (req: Request, res: Response) => {
     const response: RetirementRequestResponseDto = {
         retirement_request_id: '00c7qpby5eqk470euc',
         external_id: 'ju98dy-4345-366f-954ijjd'
+    }
+    res.json(response)
+})
+
+/**
+ * perform retirement of `amount_to_retire` from block with `serial_number`
+ * process request and return your internal reference ID as the `external_id`
+ * 
+ * You can notify Thallo of the completed unbridging event via a webhook API call
+ * For an example, please look at `unbridgingComplete` in [httpRequest](../requests/httpRequests.ts)
+ */
+app.post('/credits/unbridge', async (req: Request, res: Response) => {
+    const body: UnbridgingRequestDto = req.body
+
+    const response: UnbridgingRequestResponseDto = {
+        unbridging_request_id: '00c7qpby5eqk470euc',
+        external_id: 'hdsj99-5555-366f-ppodl9'
     }
     res.json(response)
 })

@@ -6,4 +6,6 @@ export class RetirementCompleteRequestDto {
     public retired_serial!: string
     public external_id!: string
     public retirement_request_id!: string
+    public status!: 'SUCCESS' | 'FAILED'
+    public reason!: string | undefined
 }

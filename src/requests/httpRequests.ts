@@ -3,6 +3,8 @@ import { CreditsReceviedRequestDto } from "./types/CreditsReceivedRequestDto"
 import { CreditsReceivedResponseDto } from "./types/CreditsReceivedResponseDto"
 import { RetirementCompleteResponseDto } from "./types/RetirementCompleteResponseDto"
 import { RetirementCompleteRequestDto } from "./types/RetirementCompleteRequestDto"
+import { UnbridgingCompleteRequestDto } from "./types/UnbridgingCompleteRequestDto"
+import { UnbridgingCompleteResponseDto } from "./types/UnbridgingCompleteResponseDto"
 
 const JWT = 'your-jwt-token'
 
@@ -32,6 +34,18 @@ export async function retirementComplete(): Promise<AxiosResponse<RetirementComp
         retired_serial: 'RETIRED_SERIAL',
         external_id: 'ju98dy-4345-366f-954ijjd',
         retirement_request_id: '00c7qpby5eqk470euc',
+        status: 'SUCCESS',
+        reason: undefined,
     }]
     return await axiosInstance.post<RetirementCompleteResponseDto>('/{{Thallo registered retirement webhook}}', requestBody)
+}
+
+export async function unbridgingComplete(): Promise<AxiosResponse<UnbridgingCompleteResponseDto>> {
+    const requestBody: UnbridgingCompleteRequestDto = {
+        external_id: 'ju98dy-4345-366f-954ijjd',
+        unbridging_request_id: '00c7qpby5eqk470euc',
+        status: 'SUCCESS',
+        reason: undefined,
+    }
+    return await axiosInstance.post<UnbridgingCompleteResponseDto>('/{{Thallo registered unbridging webhook}}', requestBody)
 }
