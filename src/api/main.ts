@@ -1,0 +1,40 @@
+import express, { Express, Request, Response } from 'express'
+import { CreditBlockDataDto } from './types/CreditBlockDataDto'
+import { ProjectType } from './enums/ProjectType'
+import { ProjectLocation } from './enums/ProjectLocation'
+import { SDG } from './enums/SDG'
+
+const app: Express = express()
+const port = 8080
+
+/**
+ * get information about all credit blocks transferred
+ * starting from and including `last_serial_number`
+ */
+app.get('/credits/block/:last_serial_number', async (req: Request, res: Response) => {
+    const response: CreditBlockDataDto[] = [{
+        serial_number: 'last_serial_number',
+        quantity: '500',
+        project: {
+            name: 'Hebrides Windfarm',
+            type: ProjectType.RENEWABLES,
+            location: ProjectLocation.UNITED_KINGDOM,
+            description: 'A windfarm on the coast of the Outer Hebrides',
+            url: 'https://fake-registry.com/99disue4',
+            id: '99disue4',
+            sdgs: [
+                SDG.CLEAN_ENERGY,
+                SDG.LIFE_BELOW_WATER,
+            ],
+        },
+        vintage: {
+            year: 2023,
+            url: 'https://fake-registry.com/99disue4/2023'
+        }
+    }]
+    res.json(response)
+})
+
+app.listen(port, () => {
+    console.log(`Server is listening on port: ${port}`)
+})
