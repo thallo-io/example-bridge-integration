@@ -6,9 +6,19 @@ import { RetirementCompleteRequestDto } from "./types/RetirementCompleteRequestD
 import { UnbridgingCompleteRequestDto } from "./types/UnbridgingCompleteRequestDto"
 import { UnbridgingCompleteResponseDto } from "./types/UnbridgingCompleteResponseDto"
 
-// We require your public key in order to verify the JWT token
-// Alternatively you can use an API key in place of the JWT (JWT === API_KEY) in this case
-// PLease let us know which auth mechanism you wish to use
+/**
+ * @description
+ * ## JWT
+ * This can either be a valid JWT or an API Key. PLease inform Thallo which mechanism you
+ * plan to use
+ * 
+ * @kind JWT
+ * Please supply Thallo with your public key used to generate the JWT in order for us to verify
+ * the sender
+ * 
+ * @kind API Key
+ * Please generate one of these through the bridge
+ */
 const JWT = 'your-jwt-token'
 
 const axiosInstance = axios.create({
@@ -19,6 +29,14 @@ const axiosInstance = axios.create({
     }
 })
 
+/**
+ * @description
+ * ## Credits Rexceived Webhook
+ * This is intended to be used by the registry to notify Thallo that some credits are ready
+ * to be bridged.
+ * 
+ * @fires ${THALLO_REGISTERED_CREDITS_RECEIVED_WEBHOOK} with `CreditsReceivedResponseDto` body
+ */
 export async function creditsReceived(): Promise<AxiosResponse<CreditsReceivedResponseDto>> {
     const requestBody: CreditsReceviedRequestDto = {
         serial_number: 'TEST-SERIAL-NUMBER',
@@ -28,6 +46,15 @@ export async function creditsReceived(): Promise<AxiosResponse<CreditsReceivedRe
     return await axiosInstance.post<CreditsReceivedResponseDto>('/${THALLO_REGISTERED_CREDITS_RECEIVED_WEBHOOK}', requestBody)
 }
 
+/**
+ * @description
+ * ## Retirement Complete Webhook
+ * This is intended to be used by the registry to notify Thallo that a retirement request has been completed
+ * 
+ * Only to be used when registry retirement process is async
+ * 
+ * @fires ${THALLO_REGISTERED_CREDITS_RECEIVED_WEBHOOK} with `RetirementCompleteRequestDto[]` body
+ */
 export async function retirementComplete(): Promise<AxiosResponse<RetirementCompleteResponseDto>> {
     const requestBody: RetirementCompleteRequestDto[] = [{
         serial_number: 'TEST-SERIAL-NUMBER',
@@ -43,6 +70,15 @@ export async function retirementComplete(): Promise<AxiosResponse<RetirementComp
     return await axiosInstance.post<RetirementCompleteResponseDto>('/${THALLO_REGISTERED_RETIREMENT_WEBHOOK}', requestBody)
 }
 
+/**
+ * @description
+ * ## Unbridging Complete Webhook
+ * This is intended to be used by the registry to notify Thallo that an unbridging request has been completed
+ * 
+ * Only to be used when registry unbridging/transfer process is async
+ * 
+ * @fires ${THALLO_REGISTERED_UNBRIDGING_WEBHOOK} with `UnbridgingCompleteRequestDto` body
+ */
 export async function unbridgingComplete(): Promise<AxiosResponse<UnbridgingCompleteResponseDto>> {
     const requestBody: UnbridgingCompleteRequestDto = {
         external_id: 'd9f588f9-28c9-479c-a538-6acdabff8bcf', // this matches the value the registry returned from the `/credits/transfer` API call

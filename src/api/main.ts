@@ -7,13 +7,20 @@ import { RetirementRequestDto } from './types/RetirementRequestDto'
 import { RetirementRequestResponseDto } from './types/RetirementRequestResponseDto '
 import { UnbridgingRequestDto } from './types/UnbridgingRequestDto'
 import { UnbridgingRequestResponseDto } from './types/UnbridgingRequestResponseDto '
+import { RetirementCompleteRequestDto } from '../requests/types/RetirementCompleteRequestDto'
+import { UnbridgingCompleteRequestDto } from '../requests/types/UnbridgingCompleteRequestDto'
 
 const app: Express = express()
 const port = 8080
 
 /**
- * if `serial_number` is undefined: get information about all credit blocks transferred
- * if `serial_number` is valid: return information about that specific block
+ * @description
+ * ## BRIDGING
+ * Get the block details given a serial number
+ * 
+ * @argument `serial_number`
+ * - if `undefined`: get information about all credit blocks transferred
+ * - if valid: return information about that specific block
  */
 app.get('/credits/block/:serial_number', async (req: Request, res: Response) => {
     const response: CreditBlockDataDto[] = [{
@@ -40,11 +47,19 @@ app.get('/credits/block/:serial_number', async (req: Request, res: Response) => 
 })
 
 /**
- * perform retirement of `amount_to_retire` from block with `serial_number`
- * process request and return your internal reference ID as the `external_id`
+ * @description
+ * ## RETIREMENT
+ * For when a registry's internal retirement processes are async:
  * 
+ * perform retirement of `amount_to_retire` from block with `serial_number`
+ * 
+ * @returns `RetirementRequestResponseDto`where the registry's internal reference ID is the `external_id`
+ * 
+ * @callback
  * You can notify Thallo of the completed retirement via a webhook API call
- * For an example, please look at `retirementComplete` in [httpRequest](../requests/httpRequests.ts)
+ * For an example, please look at {@link ../requests/httpRequests.ts | retirementComplete}
+ * 
+ * @async
  */
 app.post('/credits/retire', async (req: Request, res: Response) => {
     const body: RetirementRequestDto = req.body
@@ -57,11 +72,43 @@ app.post('/credits/retire', async (req: Request, res: Response) => {
 })
 
 /**
- * perform retirement of `amount_to_retire` from block with `serial_number`
- * process request and return your internal reference ID as the `external_id`
+ * @description
+ * ## RETIREMENT
+ * For when a registry's internal retirement processes are sync:
  * 
+ * perform retirement of `amount_to_retire` from block with `serial_number`
+ * @returns `RetirementCompleteRequestDto` where the registry's internal reference ID is the `external_id`
+ */
+app.post('/credits/retire', async (req: Request, res: Response) => {
+    const body: RetirementRequestDto = req.body
+
+    const response: RetirementCompleteRequestDto = {
+        serial_number: 'TEST-SERIAL-NUMBER',
+        amount_retired: '300',
+        amount_remaning: '50',
+        remaining_serial: 'REMAINING-SERIAL',
+        retired_serial: 'RETIRED_SERIAL',
+        external_id: '60b9c035-0173-47e9-bcc6-4bd2359d084b',
+        retirement_request_id: '00c7qpby5eqk470euc',
+        status: 'SUCCESS',
+        reason: undefined,
+    }
+    res.json(response)
+})
+
+/**
+ * @description
+ * ## UNBRIDGING
+ * For when a registry's internal unbridging/transfer processes are async:
+ * 
+ * perform retirement of `amount_to_retire` from block with `serial_number`
+ * @returns `UnbridgingRequestResponseDto` where the registry's internal reference ID is the `external_id`
+ * 
+ * @callback
  * You can notify Thallo of the completed unbridging event via a webhook API call
- * For an example, please look at `unbridgingComplete` in [httpRequest](../requests/httpRequests.ts)
+ * For an example, please look at {@link ../requests/httpRequests.ts | unbridgingComplete}
+ * 
+ * @async
  */
 app.post('/credits/transfer', async (req: Request, res: Response) => {
     const body: UnbridgingRequestDto = req.body
@@ -69,6 +116,30 @@ app.post('/credits/transfer', async (req: Request, res: Response) => {
     const response: UnbridgingRequestResponseDto = {
         unbridging_request_id: '00c7qpby5eqk470euc',
         external_id: 'd9f588f9-28c9-479c-a538-6acdabff8bcf'
+    }
+    res.json(response)
+})
+
+app.listen(port, () => {
+    console.log(`Server is listening on port: ${port}`)
+})
+
+/**
+ * @description
+ * ## UNBRIDGING
+ * For when a registry's internal unbridging/transfer processes are async:
+ * 
+ * perform retirement of `amount_to_retire` from block with `serial_number`
+ * @returns `UnbridgingCompleteRequestDto` where the registry's internal reference ID is the `external_id`
+ */
+app.post('/credits/transfer', async (req: Request, res: Response) => {
+    const body: UnbridgingRequestDto = req.body
+
+    const response: UnbridgingCompleteRequestDto = {
+        external_id: 'd9f588f9-28c9-479c-a538-6acdabff8bcf',
+        unbridging_request_id: '00m7qpby3oop470axj',
+        status: 'SUCCESS',
+        reason: undefined,
     }
     res.json(response)
 })
