@@ -31,7 +31,7 @@ app.get('/credits/block/:serial_number', async (req: Request, res: Response) => 
             type: ProjectType.RENEWABLES,
             location: ProjectLocation.UNITED_KINGDOM,
             description: 'A windfarm on the coast of the Outer Hebrides',
-            url: 'https://fake-registry.com/99disue4',
+            url: 'https://mock-registry.com/99disue4',
             id: '99disue4',
             sdgs: [
                 SDG.CLEAN_ENERGY,
@@ -40,7 +40,7 @@ app.get('/credits/block/:serial_number', async (req: Request, res: Response) => 
         },
         vintage: {
             year: 2023,
-            url: 'https://fake-registry.com/99disue4/2023'
+            url: 'https://mock-registry.com/99disue4/2023'
         }
     }]
     res.json(response)
