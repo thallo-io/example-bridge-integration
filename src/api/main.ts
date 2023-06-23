@@ -19,7 +19,7 @@ const port = 8080
  * Get the block details given a serial number
  * 
  * @argument `serial_number`
- * - if `undefined`: get information about all credit blocks transferred
+ * - if `undefined`: get information about all credit blocks transferred that are owned by Thallo
  * - if valid: return information about that specific block
  */
 app.get('/credits/block/:serial_number', async (req: Request, res: Response) => {

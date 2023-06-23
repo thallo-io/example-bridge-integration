@@ -1,16 +1,13 @@
 {
   "name": "example-bridge-integration",
   "version": "1.0.0",
-  "description": "",
-  "main": "build/index.js",
+  "description": "Examples for how a registry can integrate with the Thallo 2-way bridge",
   "scripts": {
     "build": "tsc",
-    "build:clean": "rm -rf lib && npm run build",
-    "start": "node build/index.js",
-    "start:ts": "ts-node src/index.ts"
+    "build:clean": "rm -rf lib && npm run build"
   },
   "keywords": [],
-  "author": "",
+  "author": "Thallo Ltd.",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.17",

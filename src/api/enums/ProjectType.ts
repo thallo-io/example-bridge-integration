@@ -1,3 +1,7 @@
+/**
+ * These are the Thallo project types. Thallo will perform a mapping between the types described by the regustry
+ * and these types. Please inform Thallo of the types you intend to use so we can update this on our end.
+ */
 export enum ProjectType {
     AFFORESTATION_REFORESTATION_AND_RESTORATION = 'Afforestation, Reforestation & Restoration',
     AGRICULTURAL_METHANE_RECOVERY = 'Agricultural Methane Recovery',
