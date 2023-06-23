@@ -48,7 +48,7 @@ app.get('/credits/block/:serial_number', async (req: Request, res: Response) => 
 
 /**
  * @description
- * ## RETIREMENT
+ * ## RETIREMENT - async
  * For when a registry's internal retirement processes are async:
  * 
  * perform retirement of `amount_to_retire` from block with `serial_number`
@@ -73,8 +73,8 @@ app.post('/credits/retire', async (req: Request, res: Response) => {
 
 /**
  * @description
- * ## RETIREMENT
- * For when a registry's internal retirement processes are sync:
+ * ## RETIREMENT - synchronous
+ * For when a registry's internal retirement processes are synchronous:
  * 
  * perform retirement of `amount_to_retire` from block with `serial_number`
  * @returns `RetirementCompleteRequestDto` where the registry's internal reference ID is the `external_id`
@@ -98,7 +98,7 @@ app.post('/credits/retire', async (req: Request, res: Response) => {
 
 /**
  * @description
- * ## UNBRIDGING
+ * ## UNBRIDGING - async
  * For when a registry's internal unbridging/transfer processes are async:
  * 
  * perform retirement of `amount_to_retire` from block with `serial_number`
@@ -126,8 +126,8 @@ app.listen(port, () => {
 
 /**
  * @description
- * ## UNBRIDGING
- * For when a registry's internal unbridging/transfer processes are async:
+ * ## UNBRIDGING - synchronous
+ * For when a registry's internal unbridging/transfer processes are synchronous:
  * 
  * perform retirement of `amount_to_retire` from block with `serial_number`
  * @returns `UnbridgingCompleteRequestDto` where the registry's internal reference ID is the `external_id`
