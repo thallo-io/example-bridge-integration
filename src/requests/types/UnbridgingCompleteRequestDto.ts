@@ -15,4 +15,13 @@ export class UnbridgingCompleteRequestDto {
      * Reason for `FAILURE` on registry
      */
     public reason!: string | undefined
+    /**
+     * Serial number for transferred credits
+     */
+    public transferred_serial!: string
+    /**
+     * Serial number for credits left after transfer
+     */
+    public remaining_serial!: string | undefined
+
 }

@@ -8,7 +8,15 @@ export class RetirementRequestDto {
      */
     public serial_number!: string
     /**
-     * Amount to retire from credit block
+     * Amount to retire from credit block in tonnes
      */
     public amount_to_retire!: string
+    /**
+     * The name of the retiree
+     */
+    public retiree_name!: string
+    /**
+     * Description of the retirement event
+     */
+    public description!: string
 }
