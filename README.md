@@ -1,6 +1,6 @@
 # Example Bridge Integration
 
-The purpose of this repo is to descibre how a registry can integrate with the Thallo 2-way bridge.
+The purpose of this repo is to demonstrate how a registry could implement their API and webhooks in order to allow Thallo to integrate their [Two-Way Bridge](https://docs.thallo.io/) with that registry.
 This repo is not intended to be consumed within an app, just to highlight the commincation required between Thallo and
 the registry.
 
