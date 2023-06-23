@@ -59,7 +59,7 @@ app.get(
  *
  * @callback
  * You can notify Thallo of the completed retirement via a webhook API call
- * For an example, please look at {@link ../requests/httpRequests.ts | retirementComplete}
+ * For an example, please look at {@link ../requests/index.ts | retirementComplete}
  *
  * @async
  */
@@ -108,7 +108,7 @@ app.post('/credits/retire', async (req: Request, res: Response) => {
  *
  * @callback
  * You can notify Thallo of the completed unbridging event via a webhook API call
- * For an example, please look at {@link ../requests/httpRequests.ts | unbridgingComplete}
+ * For an example, please look at {@link ../requests/index.ts | unbridgingComplete}
  *
  * @async
  */
