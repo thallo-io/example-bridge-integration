@@ -31,7 +31,7 @@ const axiosInstance = axios.create({
 
 /**
  * @description
- * ## Credits Rexceived Webhook
+ * ## Credits Received Webhook
  * This is intended to be used by the registry to notify Thallo that some credits are ready
  * to be bridged.
  * 
