@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { CreditsReceviedRequestDto } from './types/CreditsReceivedRequestDto';
+import { CreditsReceivedRequestDto } from './types/CreditsReceivedRequestDto';
 import { CreditsReceivedResponseDto } from './types/CreditsReceivedResponseDto';
 import { RetirementCompleteResponseDto } from './types/RetirementCompleteResponseDto';
 import { RetirementCompleteRequestDto } from './types/RetirementCompleteRequestDto';
@@ -40,7 +40,8 @@ const axiosInstance = axios.create({
 export async function creditsReceived(): Promise<
   AxiosResponse<CreditsReceivedResponseDto>
 > {
-  const requestBody: CreditsReceviedRequestDto = {
+  const requestBody: CreditsReceivedRequestDto = {
+    sender_id: 'kkdj98-884j-922m-165uud9',
     serial_number: 'TEST-SERIAL-NUMBER',
     external_id: 'xx98dy-4545-332f-954iut1',
   };
