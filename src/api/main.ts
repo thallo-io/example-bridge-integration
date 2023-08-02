@@ -18,16 +18,16 @@ const port = 8080;
  * ## BRIDGING
  * Get the block details given a serial number
  *
- * @argument `serial_number`
+ * @argument `block_serial_number`
  * - if `undefined`: get information about all credit blocks transferred that are owned by Thallo
  * - if valid: return information about that specific block
  */
 app.get(
-  '/credits/block/:serial_number',
+  '/credits/block/:block_serial_number',
   async (req: Request, res: Response) => {
     const response: CreditBlockDataDto[] = [
       {
-        serial_number: 'serial_number',
+        block_serial_number: 'block_serial_number',
         quantity: '500',
         project: {
           name: 'Hebrides Windfarm',
@@ -53,7 +53,7 @@ app.get(
  * ## RETIREMENT - async
  * For when a registry's internal retirement processes are async:
  *
- * perform retirement of `amount_to_retire` from block with `serial_number`
+ * perform retirement of `amount_to_retire` from block with `block_serial_number`
  *
  * @returns `RetirementRequestResponseDto`where the registry's internal reference ID is the `external_id`
  *
@@ -78,14 +78,14 @@ app.post('/credits/retire', async (req: Request, res: Response) => {
  * ## RETIREMENT - synchronous
  * For when a registry's internal retirement processes are synchronous:
  *
- * perform retirement of `amount_to_retire` from block with `serial_number`
+ * perform retirement of `amount_to_retire` from block with `block_serial_number`
  * @returns `RetirementCompleteRequestDto` where the registry's internal reference ID is the `external_id`
  */
 app.post('/credits/retire', async (req: Request, res: Response) => {
   const body: RetirementRequestDto = req.body;
 
   const response: RetirementCompleteRequestDto = {
-    serial_number: 'TEST-SERIAL-NUMBER',
+    block_serial_number: 'TEST-SERIAL-NUMBER',
     amount_retired: '300',
     amount_remaning: '50',
     remaining_serial: 'REMAINING-SERIAL',
@@ -103,7 +103,7 @@ app.post('/credits/retire', async (req: Request, res: Response) => {
  * ## UNBRIDGING - async
  * For when a registry's internal unbridging/transfer processes are async:
  *
- * perform retirement of `amount_to_retire` from block with `serial_number`
+ * perform retirement of `amount_to_retire` from block with `block_serial_number`
  * @returns `UnbridgingRequestResponseDto` where the registry's internal reference ID is the `external_id`
  *
  * @callback
@@ -131,7 +131,7 @@ app.listen(port, () => {
  * ## UNBRIDGING - synchronous
  * For when a registry's internal unbridging/transfer processes are synchronous:
  *
- * perform retirement of `amount_to_retire` from block with `serial_number`
+ * perform retirement of `amount_to_retire` from block with `block_serial_number`
  * @returns `UnbridgingCompleteRequestDto` where the registry's internal reference ID is the `external_id`
  */
 app.post('/credits/transfer', async (req: Request, res: Response) => {

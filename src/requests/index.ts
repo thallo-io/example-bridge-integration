@@ -42,7 +42,7 @@ export async function creditsReceived(): Promise<
 > {
   const requestBody: CreditsReceivedRequestDto = {
     sender_id: 'kkdj98-884j-922m-165uud9',
-    serial_number: 'TEST-SERIAL-NUMBER',
+    block_serial_number: 'TEST-SERIAL-NUMBER',
     external_id: 'xx98dy-4545-332f-954iut1',
   };
 
@@ -66,7 +66,7 @@ export async function retirementComplete(): Promise<
 > {
   const requestBody: RetirementCompleteRequestDto[] = [
     {
-      serial_number: 'TEST-SERIAL-NUMBER',
+      block_serial_number: 'TEST-SERIAL-NUMBER',
       amount_retired: '300',
       amount_remaning: '50',
       remaining_serial: 'REMAINING-SERIAL',
